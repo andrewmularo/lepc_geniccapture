@@ -1,0 +1,23 @@
+
+##### Depth and Breadth Figures 
+
+library(tidyverse)
+library(ggpubr)
+
+wd<- "C://Users/andre/OneDrive/Documents/Dissertation/Chapter 3_LEPC/Analysis_Scripts/LEPC_reference/Reference_Genome_Mapping"
+setwd(wd)
+
+
+depth <- read_delim("male_depth.txt", delim = "\t", col_names = F)
+breadth <- read_delim("male_breadth.txt", delim = "\t", col_names = F)
+
+p1<- ggplot(depth, aes(x=X1))+geom_histogram()+theme_classic()+ggtitle("Average Depth of Coverage")+xlab("Depth")
+
+p2<- ggplot(breadth, aes(x=X1))+geom_histogram()+theme_classic()+ggtitle("Proportion with 1x Breadth")+xlab("Proportion")
+
+View(depth)
+
+ggarrange(p1, p2)
+ggsave("C://Users/andre/OneDrive/Documents/Dissertation/Chapter 3_LEPC/Manuscript/Figures/FigureS2.tiff",  width = 25, height = 25, dpi = 300, compression = 'lzw')
+
+
